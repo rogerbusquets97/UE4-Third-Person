@@ -41,13 +41,8 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 void AFPSCharacter::MoveForward(float value)
 {
 	FRotator Rotator = GetControlRotation();
-	float roll;
-	float pitch;
-	float yaw;
 
-	UKismetMathLibrary::BreakRotator(Rotator, roll, pitch, yaw);
-
-	FRotator NewRotator = UKismetMathLibrary::MakeRotator(0.f, 0.f, yaw);
+	FRotator NewRotator = UKismetMathLibrary::MakeRotator(0.f, 0.f, Rotator.Yaw);
 	FVector Direction = UKismetMathLibrary::GetForwardVector(NewRotator);
 	AddMovementInput(Direction, value);
 }
@@ -55,13 +50,8 @@ void AFPSCharacter::MoveForward(float value)
 void AFPSCharacter::MoveRight(float value)
 {
 	FRotator Rotator = GetControlRotation();
-	float roll;
-	float pitch;
-	float yaw;
 
-	UKismetMathLibrary::BreakRotator(Rotator, roll, pitch, yaw);
-
-	FRotator NewRotator = UKismetMathLibrary::MakeRotator(0.f, 0.f, yaw);
+	FRotator NewRotator = UKismetMathLibrary::MakeRotator(0.f, 0.f, Rotator.Yaw);
 	FVector Direction = UKismetMathLibrary::GetRightVector(NewRotator);
 	AddMovementInput(Direction, value);
 }
