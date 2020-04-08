@@ -4,7 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "BaseWeapon.h"
 #include "FPSCharacter.generated.h"
+
+class UCharacterMovementComponent;
 
 UCLASS()
 class FPSPROJECT_API AFPSCharacter : public ACharacter
@@ -38,4 +41,39 @@ public:
 	UFUNCTION()
 	void StopJump();
 
+	UFUNCTION()
+	void StartSprint();
+
+	UFUNCTION()
+	void StopSprint();
+
+	UFUNCTION()
+	void EquipWeapon();
+
+	UFUNCTION(BlueprintCallable)
+	void SpawnWeapon();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Generic")
+	UCharacterMovementComponent* MovementComponent;
+
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Generic")
+	float WalkSpeed;
+
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Generic")
+	float RunSpeed;
+
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Generic")
+	TSubclassOf<class ABaseWeapon> Weapon;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Generic")
+	ABaseWeapon* BaseWeapon;
+
+	UPROPERTY(VisibleAnywhere)
+	bool WeaponEquipped;
+
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Generic")
+	FName ArmedSocket;
+
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Generic")
+	FName UnnarmedSocket;
 };

@@ -19,6 +19,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic")
 	bool InAir;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic")
+	bool InCombat;
 	
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 };
