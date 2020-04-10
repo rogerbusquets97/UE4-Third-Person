@@ -50,6 +50,12 @@ public:
 	UFUNCTION()
 	void EquipWeapon();
 
+	UFUNCTION()
+	void PlayLightAttack();
+
+	UFUNCTION()
+	void PlayHardAttack();
+
 	UFUNCTION(BlueprintCallable)
 	void SpawnWeapon();
 
@@ -65,15 +71,31 @@ public:
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Generic")
 	TSubclassOf<class ABaseWeapon> Weapon;
 
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Generic")
+	UAnimMontage* LightAttackMontage;
+
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Generic")
+	UAnimMontage* HardAttackMontage;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Generic")
 	ABaseWeapon* BaseWeapon;
 
 	UPROPERTY(VisibleAnywhere)
 	bool WeaponEquipped;
 
+	UPROPERTY(VisibleAnywhere)
+	bool Attacking;
+
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Generic")
 	FName ArmedSocket;
 
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Generic")
 	FName UnnarmedSocket;
+
+private: 
+
+	UFUNCTION()
+	void OnAttackTimerEnd();
+
+	FTimerHandle Timer;
 };
